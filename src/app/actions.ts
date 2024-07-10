@@ -16,3 +16,18 @@ export async function getUsers() {
 
   return { users };
 }
+
+export async function getHello() {
+  let msg = {};
+  try {
+    const res = await fetch("/api/auth/register"); // Ensure this points to the correct endpoint
+    if (!res.ok) {
+      throw new Error(`Error: ${res.statusText}`);
+    }
+    msg = await res.json();
+  } catch (err) {
+    console.log(err);
+    return { msg: "error" };
+  }
+  return { msg };
+}
